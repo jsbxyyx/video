@@ -15,4 +15,11 @@ public class ParseResult {
     private String msg;
     private String url;
 
+    public ParseResult() {}
+
+    public ParseResult(String msg, String url) {
+        this.msg = msg;
+        this.url = url;
+    }
+
 }

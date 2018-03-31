@@ -41,12 +41,11 @@ public class MaoyunServiceImpl implements ParseService {
             pr.setMsg(CodeConstant.OK);
             pr.setUrl(videoSourceUrl.replace("#", "_"));
             return pr;
+        } else if (vid != null && vid.indexOf(".mp4") > 0) {
+            return new ParseResult(CodeConstant.OK, vid);
+        } else if (vid != null && vid.indexOf(".m3u8") > 0) {
+            return new ParseResult(CodeConstant.OK, vid);
         }
-//        else if (vid.indexOf(".mp4") > 0) {
-//            return vid;
-//        } else if (vid.indexOf(".m3u8") > 0) {
-//            return vid;
-//        }
 
         String result = HttpUtil.get(String.format(maoyun_parse_url, videoSourceUrl));
         Matcher matcher = eval_pattern.matcher(result);
@@ -68,8 +67,8 @@ public class MaoyunServiceImpl implements ParseService {
             JSONObject json = JSON.parseObject(post);
             String msg = json.getString("msg");
 
-            if (Objects.equals(msg, "200")) {
-                pr.setMsg(CodeConstant.OK);
+            if (Objects.equals(msg, CodeConstant.OK)) {
+                pr.setMsg(msg);
                 pr.setUrl(json.getString("url"));
                 return pr;
             } else {

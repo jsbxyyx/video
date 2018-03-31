@@ -1,9 +1,10 @@
 package org.xxz.vipvideo.controller;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import org.xxz.vipvideo.config.Result;
 import org.xxz.vipvideo.constant.CodeConstant;
 import org.xxz.vipvideo.exception.NotParseException;
@@ -23,7 +24,7 @@ public class VideoController {
     @Resource
     private VideoService videoService;
 
-    @RequestMapping("getUrl")
+    @RequestMapping(value = "/getUrl", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result getUrl(String url) {
         if (url.indexOf("sohu.com") > -1) {
             throw new NotParseException("无法解析");

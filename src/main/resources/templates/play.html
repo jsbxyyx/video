@@ -9,16 +9,19 @@
     <script src="//vjs.zencdn.net/5.11/video.min.js"></script>
 
     <style>
+        .video-js {
+            background-color: #fff;
+        }
     </style>
 </head>
 <body class="container">
 
 <video id="j-video"
        class="video-js vjs-default-skin vjs-big-play-centered vjs-fluid"
-       style="width: 100%"
        controls="controls"
        preload="auto">
     <source th:src="${url}" type='video/mp4' />
+    <p class="vjs-no-js">要观看这个视频，请启用JavaScript，并考虑升级到一个Web浏览器<a href="http://videojs.com/html5-video-support/" target="_blank">支持HTML5视频</a></p>
 </video>
 <script>
     videojs('j-video', {});
